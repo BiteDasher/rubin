@@ -29,6 +29,7 @@ case "$1" in
 		install -Dm755 ./install "$pkgdir"/usr/share/rubin/install
 		install -Dm755 ./test "$pkgdir"/usr/share/rubin/test
 		install -Dm755 ./translate_bin "$pkgdir"/usr/share/rubin/translate_bin
+		mkdir -p -m 755 "$pkgdir"/usr/bin
 		ln -s /usr/share/rubin/install "$pkgdir"/usr/bin/rubin
 		install -Dm755 ./hook-install "$pkgdir"/usr/share/libalpm/scripts/rubin-install
 		install -Dm755 ./hook-remove "$pkgdir"/usr/share/libalpm/scripts/rubin-remove
