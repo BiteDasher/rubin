@@ -1,0 +1,10 @@
+[Trigger]
+Type = Path
+Operation = Remove
+Target = usr/bin/*
+
+[Action]
+Description = Removing binaries with Russian names...
+When = PostTransaction
+Exec = /usr/share/libalpm/scripts/rubin-remove /usr/local/bin
+NeedsTargets

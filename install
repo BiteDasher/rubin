@@ -1,0 +1,23 @@
+#!/bin/sh
+[ -n "$MODE" ] || MODE=755
+[ -z "$1" ] && DIR1=/usr/bin || DIR1="$1"
+[ -z "$2" ] && DIR2=/usr/local/bin || DIR2="$2"
+[ -d "$DIR1" ] || { echo "Нету такой директории: $DIR1"; exit 1; }
+[ -d "$DIR2" ] || { echo "Нету такой директории: $DIR2"; exit 1; }
+[ -d /usr/share/rubin ] && DIR3="/usr/share/rubin" || DIR3="."
+_count=0
+for __file in "$DIR1"/*; do
+  ((_count++))
+done
+_count0=0
+echo -n -e "\nПеревожу\n"
+for i in "$DIR1"/*; do
+  ((_count0++))
+  echo -n -e "\r[$_count0/$_count]..."
+  i="${i##*/}"
+  name="$("$DIR3"/translate_bin "$i")"
+  [ -f "$DIR2"/"$name" ] && continue
+  install -D -m $MODE "$DIR3"/test "$DIR2"/"$name"
+  sed -i "s/\-\-\-/$i/g" "$DIR2"/"$name"
+done
+echo ""
