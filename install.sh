@@ -25,13 +25,13 @@ case "$1" in
 				/usr/share/libalpm/hooks/99-rubin-install.hook
 				/usr/share/libalpm/hooks/99-rubin-remove.hook'; fi) ;;
 	makepkg) 
-		sudo mkdir -p -m 755 /usr/share/rubin
-		sudo install -Dm755 ./install /usr/share/rubin/install
-		sudo install -Dm755 ./test /usr/share/rubin/test
-		sudo install -Dm755 ./translate_bin /usr/share/rubin/translate_bin
-		sudo ln -s /usr/share/rubin/install /usr/bin/rubin
-		sudo install -Dm755 ./hook-install /usr/share/libalpm/scripts/rubin-install
-		sudo install -Dm755 ./hook-remove /usr/share/libalpm/scripts/rubin-remove
-		sudo install -Dm644 ./pacman-install-hook /usr/share/libalpm/hooks/99-rubin-install.hook
-		sudo install -Dm644 ./pacman-remove-hook /usr/share/libalpm/hooks/99-rubin-remove.hook ;;
+		mkdir -p -m 755 "$pkgdir"/usr/share/rubin
+		install -Dm755 ./install "$pkgdir"/usr/share/rubin/install
+		install -Dm755 ./test "$pkgdir"/usr/share/rubin/test
+		install -Dm755 ./translate_bin "$pkgdir"/usr/share/rubin/translate_bin
+		ln -s /usr/share/rubin/install "$pkgdir"/usr/bin/rubin
+		install -Dm755 ./hook-install "$pkgdir"/usr/share/libalpm/scripts/rubin-install
+		install -Dm755 ./hook-remove "$pkgdir"/usr/share/libalpm/scripts/rubin-remove
+		install -Dm644 ./pacman-install-hook "$pkgdir"/usr/share/libalpm/hooks/99-rubin-install.hook
+		install -Dm644 ./pacman-remove-hook "$pkgdir"/usr/share/libalpm/hooks/99-rubin-remove.hook ;;
 esac
